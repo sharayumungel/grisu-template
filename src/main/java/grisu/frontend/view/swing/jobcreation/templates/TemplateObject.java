@@ -1,10 +1,7 @@
 package grisu.frontend.view.swing.jobcreation.templates;
 
 import grisu.control.ServiceInterface;
-import grisu.control.exceptions.JobPropertiesException;
-import grisu.control.exceptions.JobSubmissionException;
 import grisu.control.exceptions.TemplateException;
-import grisu.frontend.model.job.JobObject;
 import grisu.frontend.view.swing.jobcreation.templates.inputPanels.AbstractInputPanel;
 import grisu.model.job.JobSubmissionObjectImpl;
 
@@ -73,6 +70,7 @@ public class TemplateObject {
 		this.si = si;
 		this.commandlineTemplate = commandlineTemplate;
 		this.fixedValues = fixedValues;
+
 		this.changedValues = parseCommandlineTemplate(commandlineTemplate);
 
 		this.jobObject = new JobSubmissionObjectImpl();
@@ -88,6 +86,7 @@ public class TemplateObject {
 	// }
 
 	public JobSubmissionObjectImpl getJobSubmissionObject() {
+
 		return this.jobObject;
 	}
 
@@ -144,7 +143,7 @@ public class TemplateObject {
 						} catch (final Exception e) {
 							throw new TemplateException(
 									"Can't set fixed key/value pair: " + key
-											+ "/" + value.toString(), e);
+									+ "/" + value.toString(), e);
 						}
 					}
 				}
@@ -153,7 +152,6 @@ public class TemplateObject {
 
 			Method method = null;
 			try {
-
 				method = jobObject.getClass().getMethod(
 						"set" + StringUtils.capitalize(key), value.getClass());
 				method.invoke(jobObject, value);
@@ -198,17 +196,6 @@ public class TemplateObject {
 
 	}
 
-	public void submitJob() throws JobPropertiesException,
-	JobSubmissionException, InterruptedException {
-
-		JobObject job = null;
-		job = new JobObject(si, jobObject.getJobDescriptionDocument());
-
-		job.createJob("/ACC");
-
-		job.submitJob();
-
-	}
 
 	public void userInput(String panelName, String newValue) {
 

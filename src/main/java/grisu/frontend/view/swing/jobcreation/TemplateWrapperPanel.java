@@ -112,6 +112,7 @@ public class TemplateWrapperPanel extends JPanel {
 						final JobObject job = JobObject.createJobObject(
 								template.getServiceInterface(),
 								template.getJobSubmissionObject());
+
 						monitorPanel.startJobSubmission(job);
 					} catch (final JobPropertiesException e) {
 
