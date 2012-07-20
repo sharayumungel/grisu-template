@@ -8,7 +8,6 @@ import grisu.frontend.view.swing.jobcreation.JobCreationPanel;
 import grisu.frontend.view.swing.jobcreation.TemplateJobCreationPanel;
 import grisu.frontend.view.swing.settings.AdvancedTemplateClientSettingsPanel;
 import grisu.frontend.view.swing.settings.ApplicationSubscribePanel;
-import grisu.jcommons.utils.EnvironmentVariableHelpers;
 import grisu.model.GrisuRegistryManager;
 import grisu.settings.ClientPropertiesManager;
 
@@ -33,6 +32,11 @@ PropertyChangeListener {
 
 	public static void main(String[] args) {
 
+		ClientPropertiesManager
+				.setProperty(
+						"shibbolethUrl",
+						"https://slcs1.arcs.org.au/Shibboleth.sso/DS?discoveryURL=https://directory.tuakiri.ac.nz/TuakiriAAF-discovery/DS&target=https://slcs1.arcs.org.au/SLCS/login");
+
 		Thread.currentThread().setName("main");
 
 		LoginManager.setClientName("grisu-template");
@@ -40,7 +44,7 @@ PropertyChangeListener {
 		LoginManager.setClientVersion(grisu.jcommons.utils.Version
 				.get("this-client"));
 
-		EnvironmentVariableHelpers.loadEnvironmentVariablesToSystemProperties();
+		// EnvironmentVariableHelpers.loadEnvironmentVariablesToSystemProperties();
 
 		LoginManager.initEnvironment();
 
