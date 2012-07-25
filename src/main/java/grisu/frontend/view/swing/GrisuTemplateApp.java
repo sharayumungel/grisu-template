@@ -8,6 +8,7 @@ import grisu.frontend.view.swing.jobcreation.JobCreationPanel;
 import grisu.frontend.view.swing.jobcreation.TemplateJobCreationPanel;
 import grisu.frontend.view.swing.settings.AdvancedTemplateClientSettingsPanel;
 import grisu.frontend.view.swing.settings.ApplicationSubscribePanel;
+import grisu.jcommons.configuration.CommonGridProperties;
 import grisu.model.GrisuRegistryManager;
 import grisu.settings.ClientPropertiesManager;
 
@@ -32,10 +33,14 @@ PropertyChangeListener {
 
 	public static void main(String[] args) {
 
+		CommonGridProperties.getDefault().setGridProperty(
+				CommonGridProperties.Property.MYPROXY_HOST,
+				"myproxy.nesi.org.nz");
+
 		ClientPropertiesManager
-				.setProperty(
-						"shibbolethUrl",
-						"https://slcs1.arcs.org.au/Shibboleth.sso/DS?discoveryURL=https://directory.tuakiri.ac.nz/TuakiriAAF-discovery/DS&target=https://slcs1.arcs.org.au/SLCS/login");
+		.setProperty(
+				"shibbolethUrl",
+				"https://slcs1.arcs.org.au/Shibboleth.sso/DS?discoveryURL=https://directory.tuakiri.ac.nz/TuakiriAAF-discovery/DS&target=https://slcs1.arcs.org.au/SLCS/login");
 
 		Thread.currentThread().setName("main");
 
